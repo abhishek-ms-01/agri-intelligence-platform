@@ -69,32 +69,42 @@ The platform provides a **complete digital ecosystem** for modern agriculture, i
 <table>
   <tr>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/dfbe5951-7fbc-4672-918d-794c2919096d" width="100%" alt="Landing Page"/>
-      <br/><br/><b>🏠 Landing Page</b>
+      <img src="./screenshots/landing.png" width="100%" alt="Landing Page"/>
+      <br/><br/><b>🏠 Landing Page — Smarter Decisions. Better Harvests.</b>
     </td>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/dc52ed96-3461-4791-9a71-18266f6ffae4" width="100%" alt="Disease Detection"/>
-      <br/><br/><b>🌿 Disease Detection</b>
-    </td>
-  </tr>
-  <tr>
-    <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/780a4346-15dd-49bf-96aa-66584889cf0e" width="100%" alt="AI Assistant"/>
-      <br/><br/><b>🤖 AI Agricultural Assistant</b>
-    </td>
-    <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/079cdeb9-fa41-456e-841c-cfe47358fd65" width="100%" alt="Weather"/>
-      <br/><br/><b>🌦 Weather & Risk Analysis</b>
+      <img src="./screenshots/how-it-works.png" width="100%" alt="How It Works"/>
+      <br/><br/><b>⚙️ How It Works — AI Workflow</b>
     </td>
   </tr>
   <tr>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/f34b80ab-2921-491a-9326-e062baa70009" width="100%" alt="Income Advisor"/>
-      <br/><br/><b>📈 Yield & Profit Optimizer</b>
+      <img src="./screenshots/crop-intelligence.png" width="100%" alt="Crop Intelligence"/>
+      <br/><br/><b>🌿 Crop Intelligence — AI Disease Detection</b>
     </td>
     <td align="center" width="50%">
-      <img src="https://github.com/user-attachments/assets/6f06171c-b651-46c5-b39c-386acfb72de1" width="100%" alt="Government Schemes"/>
-      <br/><br/><b>🏛 Government Schemes</b>
+      <img src="./screenshots/weather.png" width="100%" alt="Weather Intelligence"/>
+      <br/><br/><b>🌦 Weather Intelligence — Live Forecast</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="./screenshots/ai-advisor.png" width="100%" alt="AI Farm Advisor"/>
+      <br/><br/><b>🤖 AI Farm Advisor — Powered by Gemini</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="./screenshots/yield.png" width="100%" alt="Yield & Profit"/>
+      <br/><br/><b>📈 Yield & Profit Prediction</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center" width="50%">
+      <img src="./screenshots/schemes.png" width="100%" alt="Government Schemes"/>
+      <br/><br/><b>🏛 Government Scheme Explorer</b>
+    </td>
+    <td align="center" width="50%">
+      <img src="./screenshots/dashboard.png" width="100%" alt="Dashboard"/>
+      <br/><br/><b>📊 Analytics Dashboard</b>
     </td>
   </tr>
 </table>
