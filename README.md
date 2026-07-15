@@ -1,6 +1,6 @@
 <div align="center">
 
-<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=CropCare%20AI&fontSize=90&fontColor=ffffff&fontAlignY=38&desc=AI-Powered%20Agricultural%20Intelligence&descAlignY=60&descSize=22&animation=fadeIn"/>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=220&section=header&text=Krishi%20AI&fontSize=90&fontColor=ffffff&fontAlignY=38&desc=AI-Powered%20Agricultural%20Intelligence&descAlignY=60&descSize=22&animation=fadeIn"/>
 
 <br/>
 
@@ -18,7 +18,7 @@
 
 <p>
   <a href="#" target="_blank">
-    <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_CropCare_AI-16a34a?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Krishi_AI-16a34a?style=for-the-badge" />
   </a>
   &nbsp;
   <a href="https://github.com/abhishek-ms-01/agri-intelligence-platform/stargazers">
@@ -44,8 +44,8 @@
 
 ---
 
-## 🌱 What is CropCare AI?
-**CropCare AI** is an advanced, full-stack AI-powered agricultural decision-support platform designed to bridge the gap between traditional farming and modern technology. It empowers farmers to detect crop diseases, predict yields, analyze weather patterns, and discover financial aid through an incredibly intuitive, premium dashboard.
+## 🌱 What is Krishi AI?
+**Krishi AI** is an advanced, full-stack AI-powered agricultural decision-support platform designed to bridge the gap between traditional farming and modern technology. It empowers farmers to detect crop diseases, predict yields, analyze weather patterns, and discover financial aid through an incredibly intuitive, premium dashboard.
 
 The platform provides a **complete digital ecosystem** for modern agriculture, integrating:
 
@@ -359,7 +359,7 @@ Content-Type: application/json
 
 ---
 
-## 🎯 Who Is CropCare AI For?
+## 🎯 Who Is Krishi AI For?
 ```
 🌾  Small & Marginal Farmers    →  Expert-level disease diagnosis, completely free
 📚  Agriculture Students        →  Learn plant pathology with real AI feedback
@@ -417,7 +417,7 @@ Distributed under the **MIT License**. Free to use, modify, and distribute with 
 
 [![GitHub](https://img.shields.io/badge/GitHub-%40abhishek--ms--01-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/abhishek-ms-01)
 &nbsp;&nbsp;
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-CropCare_AI-10B981?style=for-the-badge)](#)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Krishi_AI-10B981?style=for-the-badge)](#)
 
 <br/>
 
@@ -433,7 +433,7 @@ Distributed under the **MIT License**. Free to use, modify, and distribute with 
 
 **Built with 🌱 love — for every farmer working hard in the field**
 
-*If CropCare AI helped or inspired you, please give it a* ⭐ *on GitHub — it truly means everything!*
+*If Krishi AI helped or inspired you, please give it a* ⭐ *on GitHub — it truly means everything!*
 
 <br/>
 
