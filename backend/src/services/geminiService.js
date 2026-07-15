@@ -297,29 +297,146 @@ const chatWithAdvisor = async (history, message, language = 'English', location 
     }
 };
 
+const FALLBACK_SCHEMES = [
+  {
+    id: "pm-kisan",
+    name: "PM-KISAN (Pradhan Mantri Kisan Samman Nidhi)",
+    description: "Provides income support of ₹6,000 per year in three equal installments to all landholding farmer families across India.",
+    category: "Subsidy",
+    matchScore: 98,
+    financialBenefit: "₹6,000/year",
+    probability: "Very High (98%)",
+    deadline: "Open year-round",
+    aiReason: "All small and marginal farmers with cultivable land are eligible. Direct benefit transfer to bank accounts makes this the most accessible scheme.",
+    eligibility: ["Must be a landholding farmer family", "Must have Aadhaar card", "Must have bank account linked to Aadhaar", "Not a government employee or income taxpayer"],
+    documents: ["Aadhaar Card", "Land records / Khatian", "Bank passbook", "Mobile number"],
+    tags: ["Income Support", "Direct Benefit", "All Farmers"]
+  },
+  {
+    id: "pmfby",
+    name: "PMFBY (Pradhan Mantri Fasal Bima Yojana)",
+    description: "Crop insurance scheme providing financial support to farmers suffering crop loss or damage due to natural calamities, pests, and diseases.",
+    category: "Insurance",
+    matchScore: 95,
+    financialBenefit: "Up to full sum insured",
+    probability: "High (95%)",
+    deadline: "Kharif: July 31 | Rabi: December 31",
+    aiReason: "Tropical coastal regions face monsoon damage regularly. This scheme covers paddy, arecanut and coconut which are primary crops in Karnataka.",
+    eligibility: ["All farmers growing notified crops", "Loanee farmers mandatorily covered", "Non-loanee farmers can apply voluntarily"],
+    documents: ["Aadhaar Card", "Land records", "Bank account details", "Sowing certificate"],
+    tags: ["Crop Insurance", "Natural Calamity", "Risk Cover"]
+  },
+  {
+    id: "kcc",
+    name: "Kisan Credit Card (KCC)",
+    description: "Provides farmers with affordable credit for agricultural needs including crop cultivation, post-harvest expenses, and allied activities at just 4% interest per annum.",
+    category: "Loans",
+    matchScore: 92,
+    financialBenefit: "Credit up to ₹3 lakh at 4% p.a.",
+    probability: "High (92%)",
+    deadline: "Apply at any time at nearest bank",
+    aiReason: "KCC provides revolving credit for seeds, fertilizers and equipment. Ideal for Arecanut and Paddy farmers with seasonal cash flow needs.",
+    eligibility: ["All farmers (owner cultivators, tenant farmers, sharecroppers)", "SHGs and JLGs engaged in farming"],
+    documents: ["Aadhaar Card", "Land documents", "Passport-size photos", "Bank account details"],
+    tags: ["Credit", "Low Interest", "Flexible Loan"]
+  },
+  {
+    id: "pmksy",
+    name: "PMKSY (Pradhan Mantri Krishi Sinchayee Yojana)",
+    description: "Aims to enhance water use efficiency and expand cultivable area under assured irrigation through 'Har Khet Ko Pani' and 'More Crop Per Drop'.",
+    category: "Equipment",
+    matchScore: 88,
+    financialBenefit: "55% subsidy on micro-irrigation systems",
+    probability: "High (88%)",
+    deadline: "Apply via State Agriculture Department",
+    aiReason: "Installing drip or sprinkler systems in coconut and arecanut farms can reduce water usage by 40-50% and increase yield significantly.",
+    eligibility: ["All categories of farmers", "Land must have a water source", "Preference to small and marginal farmers"],
+    documents: ["Land records", "Water source proof", "Bank account details", "Aadhaar Card"],
+    tags: ["Irrigation", "Drip", "Water Efficiency"]
+  },
+  {
+    id: "pkvy",
+    name: "PKVY (Paramparagat Krishi Vikas Yojana)",
+    description: "Promotes organic farming by providing financial assistance to farmer groups to adopt certified organic farming practices and connect to market.",
+    category: "Subsidy",
+    matchScore: 82,
+    financialBenefit: "₹50,000/hectare over 3 years",
+    probability: "Good (82%)",
+    deadline: "Apply via District Agriculture Office",
+    aiReason: "Organic certification for Arecanut and Coconut commands a 20-30% premium in export markets. This scheme can offset conversion costs.",
+    eligibility: ["Farmers willing to adopt organic farming", "Must form a cluster of 50 farmers minimum", "Land free from chemical use for conversion period"],
+    documents: ["Land records", "Group formation documents", "Aadhaar Card", "Bank details"],
+    tags: ["Organic", "Certification", "Cluster Farming"]
+  },
+  {
+    id: "nmsa",
+    name: "NMSA (National Mission for Sustainable Agriculture)",
+    description: "Promotes sustainable agriculture through soil health management, water use efficiency, and climate change adaptation measures.",
+    category: "Subsidy",
+    matchScore: 79,
+    financialBenefit: "Up to ₹25,000 assistance for soil health",
+    probability: "Good (79%)",
+    deadline: "Apply before March 31 each year",
+    aiReason: "Soil health card program under NMSA helps identify exact nutrient deficiencies in your farm, preventing over-fertilization and reducing costs.",
+    eligibility: ["All farm households", "Priority to drought-prone districts"],
+    documents: ["Soil Health Card application", "Land records", "Aadhaar Card"],
+    tags: ["Soil Health", "Sustainability", "Climate Adaptation"]
+  },
+  {
+    id: "atma",
+    name: "ATMA (Agricultural Technology Management Agency)",
+    description: "Provides training, demonstrations, and technology dissemination to farmers through Farmer Interest Groups and Farmer Schools.",
+    category: "Subsidy",
+    matchScore: 75,
+    financialBenefit: "Free training + ₹300/day attendance allowance",
+    probability: "Moderate (75%)",
+    deadline: "Seasonal training programs throughout the year",
+    aiReason: "ATMA runs Krishi Vigyan Kendra programs specifically for coastal Karnataka crops like Arecanut disease management and paddy cultivation.",
+    eligibility: ["All farmers", "Priority to small and marginal farmers"],
+    documents: ["Aadhaar Card", "Farmer registration"],
+    tags: ["Training", "Technology", "Skill Development"]
+  },
+  {
+    id: "fpo-scheme",
+    name: "Scheme for Formation of 10,000 FPOs",
+    description: "Government supports formation of Farmer Producer Organizations to help farmers get better prices, reduce input costs, and access modern technology collectively.",
+    category: "Loans",
+    matchScore: 70,
+    financialBenefit: "₹15 lakh equity grant per FPO",
+    probability: "Moderate (70%)",
+    deadline: "Ongoing till 2027-28",
+    aiReason: "Joining an FPO allows small Arecanut and Coconut farmers in Dakshina Kannada to negotiate better prices with traders collectively and access export markets.",
+    eligibility: ["Minimum 300 farmer members", "Must be registered as a company/cooperative"],
+    documents: ["Registration documents", "Member list with land records", "Bank account"],
+    tags: ["Collective Farming", "Market Access", "FPO"]
+  }
+];
+
 const getSchemes = async () => {
-    if (!model) throw new Error('Gemini API key not configured');
+    if (!model) {
+      console.warn('Gemini model not initialized, returning fallback schemes.');
+      return FALLBACK_SCHEMES;
+    }
     
     const prompt = `
     Context:
-    Farm Location: Mangalore, Dakshina Kannada, Karnataka, India
-    Climate: Tropical Coastal
+    Farm Location: India (various states)
     
-    Provide a list of 5 current agricultural government schemes in India suitable for farmers in Karnataka. Prioritize schemes applicable to Karnataka farmers, Coastal region farmers, and tropical crops like Arecanut and Paddy.
-    Return the response strictly in this JSON format:
+    Provide a list of 8 current agricultural government schemes in India suitable for Indian farmers.
+    Return the response strictly as a JSON array with this format for each object:
     [
         {
-            "id": "unique-id",
-            "name": "Scheme Name",
-            "description": "Brief description",
+            "id": "unique-kebab-case-id",
+            "name": "Full Scheme Name",
+            "description": "2-3 sentence description",
             "category": "Subsidy or Insurance or Loans or Equipment",
             "matchScore": 95,
-            "financialBenefit": "e.g., ₹6,000/year",
+            "financialBenefit": "e.g., up to Rs 6000/year",
             "probability": "Very High (95%)",
-            "deadline": "Open year-round",
-            "aiReason": "AI reason for recommendation",
-            "eligibility": ["Criteria 1", "Criteria 2"],
-            "documents": ["Doc 1", "Doc 2"],
+            "deadline": "Application deadline or Open year-round",
+            "aiReason": "Specific reason why this scheme is recommended",
+            "eligibility": ["Eligibility criteria 1", "Eligibility criteria 2"],
+            "documents": ["Required document 1", "Required document 2"],
             "tags": ["Tag 1", "Tag 2"]
         }
     ]
@@ -329,10 +446,15 @@ const getSchemes = async () => {
       const result = await model.generateContent(prompt);
       const response = await result.response;
       const text = response.text();
-      return parseJsonResponse(text);
+      const parsed = parseJsonResponse(text);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+      console.warn('Gemini returned empty/invalid schemes array, using fallback data.');
+      return FALLBACK_SCHEMES;
     } catch (error) {
-      console.error("Gemini API Error in getSchemes:", error);
-      throw error;
+      console.error("Gemini API Error in getSchemes, using fallback data:", error.message);
+      return FALLBACK_SCHEMES;
     }
 }
 
@@ -343,3 +465,4 @@ module.exports = {
   chatWithAdvisor,
   getSchemes
 };
+
