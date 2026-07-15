@@ -38,7 +38,7 @@ export default function WhyUsSection() {
               <span style={{
                 background: 'linear-gradient(135deg, #10b981, #059669)',
                 WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>Agri Intel</span>
+              }}>Krishi AI</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}

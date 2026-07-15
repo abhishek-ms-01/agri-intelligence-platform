@@ -61,11 +61,11 @@ export default function Footer() {
                 e.currentTarget.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.15)';
                 e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
               }}>
-                <img src="/logo.png" alt="Agri Intel Logo" style={{ width: '24px', height: '24px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+                <img src="/logo.png" alt="Krishi AI Logo" style={{ width: '24px', height: '24px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
                 <Sprout size={22} color="#10b981" strokeWidth={2.5} style={{ display: 'none' }} />
               </div>
               <div>
-                <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1.125rem', color: '#f8fafc', lineHeight: 1.1, letterSpacing: '0.2px' }}>Agri Intel</p>
+                <p style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1.125rem', color: '#f8fafc', lineHeight: 1.1, letterSpacing: '0.2px' }}>Krishi AI</p>
                 <p style={{ fontFamily: 'Inter', fontSize: '0.6875rem', color: '#64748b' }}>AI Platform</p>
               </div>
             </Link>
@@ -121,7 +121,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <p style={{ fontFamily: 'Inter', fontSize: '0.8125rem', color: '#475569' }}>
-            © 2026 Agri Intel. Built with ❤️ for Indian Farmers.
+            © 2026 Krishi AI. Built with ❤️ for Indian Farmers.
           </p>
 
           {/* Social icons */}

@@ -17,7 +17,7 @@ const PAGE_TITLES = {
  */
 export default function Navbar({ onMenuClick }) {
   const { pathname } = useLocation()
-  const page = PAGE_TITLES[pathname] || { title: 'Agri Intelligence', subtitle: '' }
+  const page = PAGE_TITLES[pathname] || { title: 'Krishi AIligence', subtitle: '' }
 
   return (
     <header
@@ -115,7 +115,7 @@ export default function Navbar({ onMenuClick }) {
               justifyContent: 'center',
             }}
           >
-            <img src="/logo.png" alt="Agri Intel Logo" style={{ width: '16px', height: '16px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+            <img src="/logo.png" alt="Krishi AI Logo" style={{ width: '16px', height: '16px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
             <Sprout size={13} color="white" strokeWidth={2.5} style={{ display: 'none' }} />
           </div>
           <span style={{ fontSize: '0.8125rem', fontWeight: 600, color: 'var(--color-primary-light)', fontFamily: 'Inter, sans-serif' }}>

@@ -10,7 +10,7 @@ import Footer           from '@/components/landing/Footer'
 import FloatingAIBot    from '@/components/common/FloatingAIBot'
 
 /**
- * LandingPage — The public-facing homepage of Agri Intelligence Platform.
+ * LandingPage — The public-facing homepage of Krishi AIligence Platform.
  * Sections: Navbar → Hero → Metrics → Features → How It Works → Why Us → Future → CTA → Footer
  */
 export default function LandingPage() {

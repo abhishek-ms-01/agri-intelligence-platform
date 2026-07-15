@@ -29,7 +29,7 @@ export default function PageLoader() {
           animation: 'pulse-slow 2s ease infinite',
         }}
       >
-        <img src="/logo.png" alt="Agri Intel Logo" style={{ width: '36px', height: '36px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+        <img src="/logo.png" alt="Krishi AI Logo" style={{ width: '36px', height: '36px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
         <Sprout size={32} color="#10B981" strokeWidth={2.5} style={{ display: 'none' }} />
       </div>
 

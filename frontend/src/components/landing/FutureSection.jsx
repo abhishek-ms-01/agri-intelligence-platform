@@ -35,7 +35,7 @@ export default function FutureSection() {
           style={{ textAlign: 'center', fontSize: 'clamp(1.75rem, 3vw, 2.5rem)', fontWeight: 800,
             marginBottom: '1rem', color: '#f8fafc' }}
         >
-          The Future of Agri Intel
+          The Future of Krishi AI
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}

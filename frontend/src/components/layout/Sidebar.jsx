@@ -80,11 +80,11 @@ function SidebarContent({ onClose }) {
               backdropFilter: 'blur(10px)',
             }}
           >
-            <img src="/logo.png" alt="Agri Intel Logo" style={{ width: '26px', height: '26px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+            <img src="/logo.png" alt="Krishi AI Logo" style={{ width: '26px', height: '26px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
             <Sprout size={24} color="#10B981" strokeWidth={2.5} style={{ display: 'none' }} />
           </div>
           <div className="flex items-center" style={{ marginTop: '2px' }}>
-            <p style={{ fontFamily: 'Space Grotesk, sans-serif', color: '#FFFFFF', fontSize: '26px', fontWeight: 800, letterSpacing: '0.5px', lineHeight: 1 }}>Agri Intel</p>
+            <p style={{ fontFamily: 'Space Grotesk, sans-serif', color: '#FFFFFF', fontSize: '26px', fontWeight: 800, letterSpacing: '0.5px', lineHeight: 1 }}>Krishi AI</p>
           </div>
         </NavLink>
         {onClose && (

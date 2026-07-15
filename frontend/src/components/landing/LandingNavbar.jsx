@@ -52,10 +52,10 @@ export default function LandingNavbar() {
             e.currentTarget.style.boxShadow = '0 4px 12px rgba(16, 185, 129, 0.15)';
             e.currentTarget.style.borderColor = 'rgba(16, 185, 129, 0.3)';
           }}>
-            <img src="/logo.png" alt="Agri Intel Logo" style={{ width: '22px', height: '22px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
+            <img src="/logo.png" alt="Krishi AI Logo" style={{ width: '22px', height: '22px', objectFit: 'contain' }} onError={(e) => { e.target.style.display='none'; e.target.nextSibling.style.display='block'; }} />
             <Sprout size={18} color="#10B981" strokeWidth={2.5} style={{ display: 'none' }} />
           </div>
-          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1.125rem', color: '#f8fafc', letterSpacing: '0.2px' }}>Agri Intel</span>
+          <span style={{ fontFamily: 'Space Grotesk, sans-serif', fontWeight: 800, fontSize: '1.125rem', color: '#f8fafc', letterSpacing: '0.2px' }}>Krishi AI</span>
         </Link>
 
         {/* Desktop nav links */}
