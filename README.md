@@ -17,7 +17,7 @@
 </p>
 
 <p>
-  <a href="#" target="_blank">
+  <a href="https://frontend-dusky-one-eg13yl5mxp.vercel.app" target="_blank">
     <img src="https://img.shields.io/badge/🌐_Live_Demo-Visit_Krishi_AI-16a34a?style=for-the-badge" />
   </a>
   &nbsp;
@@ -427,7 +427,7 @@ Distributed under the **MIT License**. Free to use, modify, and distribute with 
 
 [![GitHub](https://img.shields.io/badge/GitHub-%40abhishek--ms--01-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/abhishek-ms-01)
 &nbsp;&nbsp;
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Krishi_AI-10B981?style=for-the-badge)](#)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-Krishi_AI-10B981?style=for-the-badge)](https://frontend-dusky-one-eg13yl5mxp.vercel.app)
 
 <br/>
 
