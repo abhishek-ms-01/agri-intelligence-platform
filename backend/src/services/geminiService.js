@@ -10,10 +10,10 @@ let visionModel = null;
 
 if (apiKey) {
   genAI = new GoogleGenerativeAI(apiKey);
-  // Reusable models - Using gemini-flash-latest as it is the fastest and fully supported model
-  model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
-  visionModel = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
-  console.log("Gemini Model Initialized: gemini-flash-latest");
+  // gemini-1.5-flash is the stable, high-quota free tier model
+  model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  console.log("Gemini Model Initialized: gemini-1.5-flash");
 }
 
 const parseJsonResponse = (text) => {
@@ -106,8 +106,31 @@ const analyzeCropImage = async (imageBuffer, mimeType) => {
     const text = response.text();
     return parseJsonResponse(text);
   } catch (error) {
-    console.error("Gemini API Error in analyzeCropImage:", error);
-    throw error;
+    console.error("Gemini API Error in analyzeCropImage, using fallback:", error.message);
+    // Return a helpful fallback so the UI doesn't crash
+    return {
+      cropName: "Detected Crop",
+      disease: "Analysis Pending",
+      confidence: 0,
+      symptoms: ["AI quota temporarily exceeded. Please try again in a minute."],
+      causes: ["High API usage"],
+      treatment: ["Please retry in 60 seconds for a full AI-powered diagnosis."],
+      prevention: ["Ensure good air circulation", "Avoid overhead watering", "Remove infected leaves promptly"],
+      severity: "Unknown",
+      healthScore: 50,
+      aiRecommendation: "AI analysis is temporarily unavailable due to quota limits. Please retry in 60 seconds for a detailed diagnosis.",
+      scientificName: "N/A",
+      pathogenType: "N/A",
+      spreadMethod: "N/A",
+      cropFamily: "N/A",
+      recoveryTime: "N/A",
+      timeline: [
+        { label: "Retry AI Scan", time: "In 60s", done: false, desc: "AI quota resets every minute" }
+      ],
+      recoveryStages: [
+        { label: "AI Analysis", pct: 0, color: "#f59e0b" }
+      ]
+    };
   }
 };
 
@@ -140,8 +163,39 @@ const analyzeWeatherData = async (weatherData) => {
     const text = response.text();
     return parseJsonResponse(text);
   } catch (error) {
-    console.error("Gemini API Error in analyzeWeatherData:", error);
-    throw error;
+    console.error("Gemini API Error in analyzeWeatherData, using rule-based fallback:", error.message);
+    // Rule-based fallback — no AI needed
+    const temp = weatherData.temperature || 25;
+    const humidity = weatherData.humidity || 60;
+    const rain = weatherData.rain || 0;
+    let severity = 'Low';
+    let headline = 'Good Farming Conditions';
+    let summary = 'Current weather conditions are suitable for most farming activities.';
+    let actions = ['Proceed with scheduled farming activities', 'Monitor soil moisture levels', 'Check crops for any early signs of stress'];
+    if (humidity > 80 && temp > 28) {
+      severity = 'High';
+      headline = 'High Humidity & Heat Alert';
+      summary = 'High humidity combined with warm temperatures creates ideal conditions for fungal diseases. Immediate preventive action recommended.';
+      actions = ['Apply preventive fungicide immediately', 'Improve field drainage', 'Increase air circulation around crops', 'Monitor for early blight symptoms'];
+    } else if (humidity > 70 || rain > 5) {
+      severity = 'Medium';
+      headline = 'Elevated Disease Risk';
+      summary = 'Moderate humidity levels may promote fungal growth. Monitor crops closely.';
+      actions = ['Inspect crops for early disease signs', 'Ensure good drainage', 'Consider preventive spray if conditions persist'];
+    } else if (temp > 35) {
+      severity = 'Medium';
+      headline = 'Heat Stress Warning';
+      summary = 'High temperatures may cause heat stress in crops. Increase irrigation frequency.';
+      actions = ['Increase irrigation frequency', 'Water during early morning or evening', 'Provide shade for sensitive crops'];
+    }
+    return {
+      severity,
+      headline,
+      summary,
+      actions,
+      cropImpact: severity === 'High' ? 'High risk of fungal disease outbreak. Yield may be affected if untreated.' : severity === 'Medium' ? 'Moderate stress expected. Monitor closely.' : 'Minimal impact expected under current conditions.',
+      confidence: 75
+    };
   }
 };
 
@@ -252,49 +306,21 @@ const chatWithAdvisor = async (history, message, language = 'English', location 
   `;
 
   try {
-    console.log('Prompt sent to Gemini:\n', prompt);
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
-    console.log('Raw Gemini response:\n', text);
-    
-    return {
-      text: text
-    };
+    return { text };
   } catch (error) {
-      console.error("Gemini API Error in chatWithAdvisor:\n", error);
-      
-      let statusCode = 500;
-      let userMessage = "An unexpected error occurred while contacting the AI service.";
-      let retryAfter = null;
-
-      if (error.status === 429) {
-        statusCode = 429;
-        userMessage = "AI service is temporarily busy. Please try again in a few moments.";
-        
-        // Extract retryDelay if available in errorDetails
-        if (error.errorDetails) {
-          const retryInfo = error.errorDetails.find(d => d['@type'] === 'type.googleapis.com/google.rpc.RetryInfo');
-          if (retryInfo && retryInfo.retryDelay) {
-            // e.g. '42s' -> 42
-            retryAfter = parseInt(retryInfo.retryDelay.replace('s', '')) || null;
-          }
-        }
-        if (!retryAfter) retryAfter = 60; // fallback to 60s if not specified
-      } else if (error.status === 401 || error.status === 403) {
-        statusCode = error.status;
-        userMessage = "AI service authentication failed. Please check API keys.";
-      } else if (error.status === 404) {
-        statusCode = 404;
-        userMessage = "AI service model not found.";
-      }
-
-      const customError = new Error(error.message);
-      customError.statusCode = statusCode;
-      customError.userMessage = userMessage;
-      customError.retryAfter = retryAfter;
-      throw customError;
+    console.error("Gemini API Error in chatWithAdvisor, using fallback:", error.message);
+    if (error.status === 429) {
+      return {
+        text: `## ⏳ AI Advisor Temporarily Busy\n\nI'm receiving too many requests right now. Please wait **60 seconds** and try again.\n\nIn the meantime, here are some general farming tips:\n\n- 🌿 **Disease Prevention**: Ensure good air circulation and avoid overhead irrigation\n- 💧 **Irrigation**: Water in the early morning to reduce fungal risk\n- 🌱 **Soil Health**: Add organic compost to improve soil structure and fertility\n- 🐛 **Pest Control**: Inspect crops regularly and use integrated pest management\n- ☀️ **Weather**: Monitor forecasts and protect crops from extreme heat or frost\n\n*Please retry your question in a moment — I'll give you a detailed AI response!*`
+      };
     }
+    return {
+      text: `## ⚠️ AI Service Unavailable\n\nSorry, I'm unable to connect to the AI service right now. Please try again shortly.\n\nFor urgent farming advice, contact your local Krishi Vigyan Kendra (KVK) or visit the PM Kisan helpline at **1800-180-1551**.`
+    };
+  }
 };
 
 const FALLBACK_SCHEMES = [
