@@ -11,9 +11,9 @@ let visionModel = null;
 if (apiKey) {
   genAI = new GoogleGenerativeAI(apiKey);
   // gemini-1.5-flash is the stable, high-quota free tier model
-  model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-  visionModel = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
-  console.log("Gemini Model Initialized: gemini-1.5-flash");
+  model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+  visionModel = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
+  console.log("Gemini Model Initialized: gemini-flash-latest");
 }
 
 const parseJsonResponse = (text) => {

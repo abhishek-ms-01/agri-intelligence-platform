@@ -36,7 +36,7 @@
 
 <br/>
 
-> ### *Empowering farmers with AI — detect diseases, predict yields, and grow smarter.*
+> ### _Empowering farmers with AI — detect diseases, predict yields, and grow smarter._
 
 <br/>
 
@@ -45,6 +45,7 @@
 ---
 
 ## 🌱 What is Krishi AI?
+
 **Krishi AI** is an advanced, full-stack AI-powered agricultural decision-support platform designed to bridge the gap between traditional farming and modern technology. It empowers farmers to detect crop diseases, predict yields, analyze weather patterns, and discover financial aid through an incredibly intuitive, premium dashboard.
 
 The platform provides a **complete digital ecosystem** for modern agriculture, integrating:
@@ -64,6 +65,7 @@ The platform provides a **complete digital ecosystem** for modern agriculture, i
 ---
 
 ## 📸 Platform Screenshots
+
 <div align="center">
 
 <table>
@@ -114,45 +116,55 @@ The platform provides a **complete digital ecosystem** for modern agriculture, i
 ---
 
 ## ✨ Core Features
+
 <div align="center">
 
-| Module | Capability | Powered By |
-|:---:|---|:---:|
-| 🌿 **Disease Detection** | Upload leaf → instant AI diagnosis with full treatment plan | Gemini Vision AI |
-| 🤖 **Agri Advisor** | 24/7 farming chatbot for pesticide, fertilizer & crop advice | Google Gemini LLM |
-| ⛅ **Weather Intelligence**| 7-day forecast + agricultural disaster alerts | Custom API |
-| 📈 **Yield Prediction** | Profit calculator, yield projections, and data analytics | Data Analytics |
-| 🏛 **Gov. Schemes** | PM-KISAN, PMFBY, and financial scheme discovery | React & Framer |
+|           Module            | Capability                                                   |    Powered By     |
+| :-------------------------: | ------------------------------------------------------------ | :---------------: |
+|  🌿 **Disease Detection**   | Upload leaf → instant AI diagnosis with full treatment plan  | Gemini Vision AI  |
+|     🤖 **Agri Advisor**     | 24/7 farming chatbot for pesticide, fertilizer & crop advice | Google Gemini LLM |
+| ⛅ **Weather Intelligence** | 7-day forecast + agricultural disaster alerts                |    Custom API     |
+|   📈 **Yield Prediction**   | Profit calculator, yield projections, and data analytics     |  Data Analytics   |
+|     🏛 **Gov. Schemes**     | PM-KISAN, PMFBY, and financial scheme discovery              |  React & Framer   |
 
 </div>
 
 <br/>
 
 ### 🌿 AI Crop Disease Detection
+
 > Upload any crop leaf image — get a precise diagnosis instantly.
+
 - **Drag-and-drop** or camera capture on any device
 - **Gemini Vision AI** evaluates the crop's health dynamically
 - Returns: disease name, confidence score, symptoms, treatment plan, and prevention tips
 
 ### 🤖 AI Agricultural Advisor
+
 > Your personal farming expert — available 24/7.
+
 - Ask anything: disease ID, pesticide selection, fertilizer ratios, irrigation timing
 - **Context-aware** responses based on real-world agronomy data
 - Clean, chat-like interface powered by **Google Gemini**
 
 ### 📈 Yield & Profit Optimizer
+
 > Plant smarter. Earn more. Waste less.
+
 - Calculate expected crop yield based on farm size, soil type, and current climate conditions
 - Helps farmers plan logistics, storage, and market sales before the harvest even begins
 
 ### 🏛 Government Scheme Explorer
+
 > Never miss a subsidy or support program again.
+
 - Filters national and state-level agricultural schemes based on the farmer's specific profile
 - Unlocks hidden funding, subsidies, and insurance policies to protect the farmer's livelihood
 
 ---
 
 ## 🔁 Disease Detection Workflow
+
 ```mermaid
 flowchart TD
     A([🌿 User Uploads Leaf Image]) --> B[☁️ Base64 Encoding]
@@ -174,6 +186,7 @@ flowchart TD
 ---
 
 ## 🏗 System Architecture
+
 ```mermaid
 graph TB
     subgraph CLIENT["🖥️ React Frontend (Vite + Tailwind)"]
@@ -219,6 +232,7 @@ graph TB
 ---
 
 ## 🧠 Tech Stack
+
 <div align="center">
 
 **Frontend**
@@ -283,19 +297,23 @@ agri-intelligence-platform/
 ## 🚀 Installation & Setup
 
 ### Prerequisites
-| Tool | Min Version | Download |
-|---|:---:|---|
-| Node.js | v18+ | [nodejs.org](https://nodejs.org/) |
-| Git | Latest | [git-scm.com](https://git-scm.com/) |
+
+| Tool    | Min Version | Download                            |
+| ------- | :---------: | ----------------------------------- |
+| Node.js |    v18+     | [nodejs.org](https://nodejs.org/)   |
+| Git     |   Latest    | [git-scm.com](https://git-scm.com/) |
 
 ### Step 1 — Clone the Repository
+
 ```bash
 git clone https://github.com/abhishek-ms-01/agri-intelligence-platform.git
 cd agri-intelligence-platform
 ```
 
 ### Step 2 — Set Up Environment Variables
+
 Create a `.env` file in the **backend** folder:
+
 ```env
 PORT=5000
 MONGODB_URI=mongodb+srv://<user>:<password>@cluster0.xxxxx.mongodb.net/cropcare
@@ -304,6 +322,7 @@ NODE_ENV=development
 ```
 
 ### Step 3 — Run the Application
+
 ```bash
 # Terminal 1 — Start backend server
 cd backend
@@ -323,11 +342,14 @@ Open your browser to `http://localhost:5173`
 ## 📖 API Documentation
 
 ### Detect Disease
+
 ```http
 POST /api/crop/analyze
 Content-Type: application/json
 ```
+
 **Response:**
+
 ```json
 {
   "disease": "Tomato Late Blight",
@@ -339,37 +361,42 @@ Content-Type: application/json
 ```
 
 ### AI Chat Assistant
+
 ```http
 POST /api/advisor/chat
 Content-Type: application/json
 ```
+
 **Response:**
+
 ```json
-{ 
-  "response": "For powdery mildew on wheat, I recommend applying a sulfur-based fungicide during the early morning..." 
+{
+  "response": "For powdery mildew on wheat, I recommend applying a sulfur-based fungicide during the early morning..."
 }
 ```
 
 ---
 
 ## 📊 Platform Modules
+
 <div align="center">
 
-| # | Module | Route | Description |
-|:---:|---|---|---|
-| 1 | 🏠 Landing Page | `/` | Platform intro, features, and call-to-action |
-| 2 | 📊 Dashboard | `/app` | Main analytics and recent activity feed |
-| 3 | 🌿 Crop Intelligence| `/app/crop-intelligence` | Upload leaf → instant AI diagnosis |
-| 4 | 🌦 Weather | `/app/weather` | Forecast and crop disease risk analysis |
-| 5 | 📈 Yield & Profit | `/app/yield` | Crop yield predictor and profitability calculator |
-| 6 | 🤖 AI Advisor | `/app/advisor` | Gemini-powered farming chatbot |
-| 7 | 🏛 Gov. Schemes | `/app/schemes` | Agricultural scheme explorer |
+|  #  | Module               | Route                    | Description                                       |
+| :-: | -------------------- | ------------------------ | ------------------------------------------------- |
+|  1  | 🏠 Landing Page      | `/`                      | Platform intro, features, and call-to-action      |
+|  2  | 📊 Dashboard         | `/app`                   | Main analytics and recent activity feed           |
+|  3  | 🌿 Crop Intelligence | `/app/crop-intelligence` | Upload leaf → instant AI diagnosis                |
+|  4  | 🌦 Weather           | `/app/weather`           | Forecast and crop disease risk analysis           |
+|  5  | 📈 Yield & Profit    | `/app/yield`             | Crop yield predictor and profitability calculator |
+|  6  | 🤖 AI Advisor        | `/app/advisor`           | Gemini-powered farming chatbot                    |
+|  7  | 🏛 Gov. Schemes      | `/app/schemes`           | Agricultural scheme explorer                      |
 
 </div>
 
 ---
 
 ## 🎯 Who Is Krishi AI For?
+
 ```
 🌾  Small & Marginal Farmers    →  Expert-level disease diagnosis, completely free
 📚  Agriculture Students        →  Learn plant pathology with real AI feedback
@@ -381,21 +408,23 @@ Content-Type: application/json
 ---
 
 ## 🔮 Roadmap
+
 <div align="center">
 
-| Status | Feature |
-|:---:|---|
-| 🔜 | 📱 Native mobile app (React Native) for offline-capable farms |
-| 🔜 | 🛸 Drone crop scanning for field-scale disease mapping |
-| 🔜 | 🛰 Satellite NDVI monitoring for large-scale crop health |
-| 🔜 | 🗣 Multilingual voice assistant (Hindi, Tamil, Telugu, Marathi) |
-| 🔜 | 📡 SMS disease risk alerts — no internet connection required |
+| Status | Feature                                                         |
+| :----: | --------------------------------------------------------------- |
+|   🔜   | 📱 Native mobile app (React Native) for offline-capable farms   |
+|   🔜   | 🛸 Drone crop scanning for field-scale disease mapping          |
+|   🔜   | 🛰 Satellite NDVI monitoring for large-scale crop health        |
+|   🔜   | 🗣 Multilingual voice assistant (Hindi, Tamil, Telugu, Marathi) |
+|   🔜   | 📡 SMS disease risk alerts — no internet connection required    |
 
 </div>
 
 ---
 
 ## 🤝 Contributing
+
 Contributions make the open-source community extraordinary. All contributions are **warmly welcomed!**
 
 ```bash
@@ -412,16 +441,18 @@ git commit -m "feat: add amazing feature"
 ---
 
 ## 📄 License
+
 Distributed under the **MIT License**. Free to use, modify, and distribute with attribution.
 
 ---
 
 ## 👨‍💻 Author
+
 <div align="center">
 
 <br/>
 
-*Full-Stack AI Developer · AgriTech Builder*
+_Full-Stack AI Developer · AgriTech Builder_
 
 <br/>
 
@@ -443,7 +474,7 @@ Distributed under the **MIT License**. Free to use, modify, and distribute with 
 
 **Built with 🌱 love — for every farmer working hard in the field**
 
-*If Krishi AI helped or inspired you, please give it a* ⭐ *on GitHub — it truly means everything!*
+_If Krishi AI helped or inspired you, please give it a_ ⭐ _on GitHub — it truly means everything!_
 
 <br/>
 
