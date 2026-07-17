@@ -10,10 +10,10 @@ let visionModel = null;
 
 if (apiKey) {
   genAI = new GoogleGenerativeAI(apiKey);
-  // gemini-1.5-flash is the stable, high-quota free tier model
-  model = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
-  visionModel = genAI.getGenerativeModel({ model: 'gemini-flash-latest' });
-  console.log("Gemini Model Initialized: gemini-flash-latest");
+  // gemini-2.0-flash is faster and less prone to vercel timeout
+  model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+  visionModel = genAI.getGenerativeModel({ model: 'gemini-2.0-flash' });
+  console.log("Gemini Model Initialized: gemini-2.0-flash");
 }
 
 const parseJsonResponse = (text) => {
@@ -54,8 +54,6 @@ const parseJsonResponse = (text) => {
 };
 
 const analyzeCropImage = async (imageBuffer, mimeType) => {
-  if (!visionModel) throw new Error('Gemini API key not configured');
-
   const prompt = `
     Context:
     Farm Location: Mangalore, Dakshina Kannada, Karnataka, India
@@ -101,6 +99,7 @@ const analyzeCropImage = async (imageBuffer, mimeType) => {
   };
 
   try {
+    if (!visionModel) throw new Error('Gemini API key not configured');
     const result = await visionModel.generateContent([prompt, imagePart]);
     const response = await result.response;
     const text = response.text();
@@ -135,8 +134,6 @@ const analyzeCropImage = async (imageBuffer, mimeType) => {
 };
 
 const analyzeWeatherData = async (weatherData) => {
-  if (!model) throw new Error('Gemini API key not configured');
-
   const prompt = `
     Context:
     Farm Location: Mangalore, Dakshina Kannada, Karnataka, India
@@ -158,6 +155,7 @@ const analyzeWeatherData = async (weatherData) => {
   `;
 
   try {
+    if (!model) throw new Error('Gemini API key not configured');
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -200,8 +198,6 @@ const analyzeWeatherData = async (weatherData) => {
 };
 
 const predictYield = async (data) => {
-  if (!model) throw new Error('Gemini API key not configured');
-
   const prompt = `
     Context:
     Farm Location: Mangalore, Dakshina Kannada, Karnataka, India
@@ -241,6 +237,7 @@ const predictYield = async (data) => {
   `;
 
   try {
+    if (!model) throw new Error('Gemini API key not configured');
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
@@ -282,8 +279,6 @@ const predictYield = async (data) => {
 };
 
 const chatWithAdvisor = async (history, message, language = 'English', location = 'Mangalore, Karnataka') => {
-  if (!model) throw new Error('Gemini API key not configured');
-
   // Convert history to Gemini format if needed, or just format as text
   const contextText = history.map(h => `${h.role}: ${h.text}`).join('\n');
   
@@ -306,6 +301,7 @@ const chatWithAdvisor = async (history, message, language = 'English', location 
   `;
 
   try {
+    if (!model) throw new Error('Gemini API key not configured');
     const result = await model.generateContent(prompt);
     const response = await result.response;
     const text = response.text();
